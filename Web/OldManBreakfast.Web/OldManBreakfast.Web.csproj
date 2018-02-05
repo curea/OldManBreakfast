@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <UserSecretsId>aspnet-OldManBreakfast.Web-5C0E3A3D-3D6C-4383-AA94-015FAF73A127</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../Data/OldManBreakfast.Data/OldManBreakfast.Data.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="2.6.362"/>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" PrivateAssets="All"/>
+    <PackageReference Include="AutoMapper" Version="6.2.0"/>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="1.2.0"/>
+    <PackageReference Include="dropzone" Version="4.2.0"/>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <DotNetCliToolReference Include="BundlerMinifier.Core" Version="*"/>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0"/>
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0"/>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0"/>
+  </ItemGroup>
+</Project>

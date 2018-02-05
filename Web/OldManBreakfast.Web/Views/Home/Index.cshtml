@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<!--  Hero Section  -->
+<section class="hero" id="hero">
+    <div class="container">
+        <div class="caption">
+            <h1 class="text-uppercase  animated wow fadeInLeft">Old Man Breakfast</h1>
+            <p class="text-lowercase  animated wow fadeInLeft">Monthly gathering of friends to meet, share, and grow.</p>
+        </div>			
+    </div>
+</section>
+<!--  End Hero Section  -->
+
+<!--  About Section  -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center animated wow fadeInLeft">
+                <div class="iphone">
+                    <img src="~/images/stack.jpg" alt="" titl="">
+                </div>
+            </div>
+            <div class="col-md-6 animated wow fadeInRight">
+                <div class="features_list">
+                    <h1 class="text-uppercase">About Old Man Breakfast.</h1>
+                    <p>We are a group of friends with similar interests and dissimilar backgrounds. OMB grew out of the realization that:</p>
+                    <ul class="list-unstyled">
+                        <li>
+                            <span>1. We were all awake before our families on most days</span>
+                        </li>
+                        <li>
+                            <span>2. We had a mutual need for socialization</span>
+                        </li>
+                        <li>
+                            <span>3. Why not?</span>
+                        </li>
+                    </ul>
+                </div>					
+            </div>
+        </div>
+    </div>
+</section>
+<!--  End About Section  -->
+
+<!--  Email Subscription Section  -->
+<section class="sub_box">
+    <p class="cta_text animated wow fadeInDown">Join our list and stay updated!</p>
+    <form asp-controller="Account" asp-action="RegisterForEmail" method="post">
+        <input type="email" id="mc_email" name="email" placeholder="Enter your email"/>
+        <button type="submit" id="mc_submit">
+            <i class="icon"></i>
+        </button>
+    </form>
+    <div class="message" id="error_msg">Please Enter A Valid Email.</div>
+    <div class="message" id="success_msg">Thank You For Your Subscription.</div>
+</section>
+<!--  End Email Subscription Section  -->
