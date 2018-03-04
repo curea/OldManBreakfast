@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace OldManBreakfast.Data.Models
+namespace OldManBreakfast.Web.Models
 {
-    public class Breakfast : BaseEntity
+    public class BreakfastViewModel
     {
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime EventDate { get; set; }
         public DateTime FallbackDate { get; set; }
-        public List<AttachedImage> Images { get; set; } = new List<AttachedImage>();
-        public ApplicationUser Organizer { get; set; }
+        public string Organizer { get; set; }
+        public List<AttachedImageViewModel> Images { get; set; }
     }
 }

@@ -332,7 +332,7 @@ a.app_link {
 }
 
 .about .iphone {
-	max-width: 339px;
+	max-width: 420px;
 	position: relative;
 	display: inline-block;
 	text-align: center;
@@ -646,7 +646,6 @@ a.app_link {
 /*		Footer 		*/
 
 footer {
-	padding: 100px 0;
 	text-align: center;
 }
 

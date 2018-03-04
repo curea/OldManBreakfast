@@ -1,4 +1,6 @@
-﻿@{
+﻿@model BreakfastViewModel
+
+@{
     ViewData["Title"] = "Home";
 }
 
@@ -12,6 +14,34 @@
     </div>
 </section>
 <!--  End Hero Section  -->
+
+@if (Model != null)
+{
+<!--  Next Breakfast Section  -->
+<section class="featured_on" id="next">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center animated wow fadeInLeft">
+                <h1 class="text-uppercase  animated wow fadeInLeft">Next Breakfast</h1>
+                <h2 class="text-uppercase  animated wow fadeInLeft">@Model.Name</h2>
+                <h2>@Model.EventDate</h2>
+                <div class="animated wow fadeInLeft">@Html.Raw(@Model.Description)</div>
+            </div>
+            <div class="col-md-6 text-center animated wow fadeInRight">
+                <div class="iphone">
+                    @foreach (var item in Model.Images)
+                    {
+                        <a href='@item.Url' target='@item.Target'>
+                            <img src='@item.Source'/>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>		
+    </div>
+</section>
+<!--  End Next Breakfast Section  -->
+}
 
 <!--  About Section  -->
 <section class="about" id="about">

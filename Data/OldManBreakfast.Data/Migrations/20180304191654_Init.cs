@@ -186,6 +186,31 @@ namespace OldManBreakfast.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "AttachedImages",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    BreakfastId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Created = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    Source = table.Column<string>(type: "TEXT", nullable: true),
+                    Target = table.Column<string>(type: "TEXT", nullable: true),
+                    Updated = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    Url = table.Column<string>(type: "TEXT", nullable: true),
+                    Version = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AttachedImages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AttachedImages_Breakfasts_BreakfastId",
+                        column: x => x.BreakfastId,
+                        principalTable: "Breakfasts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -224,6 +249,11 @@ namespace OldManBreakfast.Data.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_AttachedImages_BreakfastId",
+                table: "AttachedImages",
+                column: "BreakfastId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Breakfasts_OrganizerId",
                 table: "Breakfasts",
                 column: "OrganizerId");
@@ -247,10 +277,13 @@ namespace OldManBreakfast.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Breakfasts");
+                name: "AttachedImages");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Breakfasts");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

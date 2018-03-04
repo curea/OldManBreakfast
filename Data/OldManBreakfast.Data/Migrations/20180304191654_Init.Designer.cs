@@ -11,7 +11,7 @@ using System;
 namespace OldManBreakfast.Data.Migrations
 {
     [DbContext(typeof(OldManBreakfastDBContext))]
-    [Migration("20180121224332_Init")]
+    [Migration("20180304191654_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,6 +184,32 @@ namespace OldManBreakfast.Data.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
+            modelBuilder.Entity("OldManBreakfast.Data.Models.AttachedImage", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long?>("BreakfastId");
+
+                    b.Property<DateTime?>("Created");
+
+                    b.Property<string>("Source");
+
+                    b.Property<string>("Target");
+
+                    b.Property<DateTime?>("Updated");
+
+                    b.Property<string>("Url");
+
+                    b.Property<int>("Version");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BreakfastId");
+
+                    b.ToTable("AttachedImages");
+                });
+
             modelBuilder.Entity("OldManBreakfast.Data.Models.Breakfast", b =>
                 {
                     b.Property<long>("Id")
@@ -255,6 +281,13 @@ namespace OldManBreakfast.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("OldManBreakfast.Data.Models.AttachedImage", b =>
+                {
+                    b.HasOne("OldManBreakfast.Data.Models.Breakfast")
+                        .WithMany("Images")
+                        .HasForeignKey("BreakfastId");
                 });
 
             modelBuilder.Entity("OldManBreakfast.Data.Models.Breakfast", b =>

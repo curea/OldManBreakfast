@@ -13,7 +13,8 @@ namespace OldManBreakfast.Data
 {
     public class OldManBreakfastDBContext: IdentityDbContext<ApplicationUser, ApplicationUserRole, long>
     {
-        public DbSet<Breakfast> Breakfasts { get; set; }      
+        public DbSet<Breakfast> Breakfasts { get; set; }
+        public DbSet<AttachedImage> AttachedImages { get; set; }
 
         public OldManBreakfastDBContext() : base(new DbContextOptions<OldManBreakfastDBContext>()) { }
 

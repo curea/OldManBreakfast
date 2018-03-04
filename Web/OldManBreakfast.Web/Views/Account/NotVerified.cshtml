@@ -1,0 +1,10 @@
+@{
+    ViewData["Title"] = "Email Not Confirmed";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div>
+    <p>
+        Your email address has not been confirmed. Please <a asp-controller="Account" asp-action="Resend" asp-route-userid="@ViewBag.UserName">Click here to resend it</a>.
+    </p>
+</div>

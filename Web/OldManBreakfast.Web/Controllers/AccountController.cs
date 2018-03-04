@@ -63,7 +63,7 @@ namespace OldManBreakfast.Web.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
@@ -77,6 +77,11 @@ namespace OldManBreakfast.Web.Controllers
                 {
                     _logger.LogWarning("User account locked out.");
                     return RedirectToAction(nameof(Lockout));
+                }
+                if (result.IsNotAllowed)
+                {
+                    _logger.LogInformation("User account email not validated: {1}", model.Email);
+                    return RedirectToAction("NotVerified", "Account", new { UserId = model.Email });
                 }
                 else
                 {
@@ -206,6 +211,13 @@ namespace OldManBreakfast.Web.Controllers
             return View();
         }
 
+        public IActionResult NotVerified(string UserId)
+        {
+            _logger.LogInformation("User account not email validated: {1}", UserId);
+            ViewBag.UserName = UserId;
+            return View("NotVerified");
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -258,7 +270,8 @@ namespace OldManBreakfast.Web.Controllers
                     var callbackUrl = Url.EmailConfirmationLink(user.Id.ToString(), code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                     //do not sign in until after email validation
+                    //await _signInManager.SignInAsync(user, isPersistent: false);                    
                     _logger.LogInformation("User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }
@@ -267,6 +280,18 @@ namespace OldManBreakfast.Web.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Resend(string UserId)
+        {
+            var user = await _userManager.FindByEmailAsync(UserId);
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+            await _emailSender.SendEmailConfirmationAsync(user.Email, callbackUrl);
+
+            _logger.LogInformation("User email validation sent.");
+            return RedirectToAction("Login", "Account");
         }
 
         [HttpPost]
