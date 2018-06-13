@@ -82,15 +82,6 @@ namespace OldManBreakfast.Web
 
             app.UseStaticFiles();
 
-            //Delete all
-            //*
-            var imgs = context.AttachedImages.ToList();
-            context.AttachedImages.RemoveRange(imgs);
-            var bks = context.Breakfasts.ToList();
-            context.Breakfasts.RemoveRange(bks);
-            context.SaveChanges();
-            //*/
-
             if (!context.AllMigrationsApplied())
                 context.Database.Migrate();
             context.EnsureSeedData(env.IsDevelopment());

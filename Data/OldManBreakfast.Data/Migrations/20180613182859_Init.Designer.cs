@@ -11,7 +11,7 @@ using System;
 namespace OldManBreakfast.Data.Migrations
 {
     [DbContext(typeof(OldManBreakfastDBContext))]
-    [Migration("20180304191654_Init")]
+    [Migration("20180613182859_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -221,7 +221,7 @@ namespace OldManBreakfast.Data.Migrations
 
                     b.Property<DateTime>("EventDate");
 
-                    b.Property<DateTime>("FallbackDate");
+                    b.Property<DateTime?>("FallbackDate");
 
                     b.Property<string>("Name");
 

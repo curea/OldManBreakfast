@@ -169,7 +169,7 @@ namespace OldManBreakfast.Data.Migrations
                     Created = table.Column<DateTime>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
                     EventDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    FallbackDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    FallbackDate = table.Column<DateTime>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     OrganizerId = table.Column<long>(type: "INTEGER", nullable: true),
                     Updated = table.Column<DateTime>(type: "TEXT", nullable: true),

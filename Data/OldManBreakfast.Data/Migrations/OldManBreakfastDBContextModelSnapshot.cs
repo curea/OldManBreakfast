@@ -220,7 +220,7 @@ namespace OldManBreakfast.Data.Migrations
 
                     b.Property<DateTime>("EventDate");
 
-                    b.Property<DateTime>("FallbackDate");
+                    b.Property<DateTime?>("FallbackDate");
 
                     b.Property<string>("Name");
 

@@ -8,8 +8,7 @@ namespace OldManBreakfast.Web.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime EventDate { get; set; }
-        public DateTime FallbackDate { get; set; }
-        public string Organizer { get; set; }
+        public DateTime? FallbackDate { get; set; }
         public List<AttachedImageViewModel> Images { get; set; }
     }
 }

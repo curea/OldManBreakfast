@@ -1,0 +1,14 @@
+@model BreakfastViewModel
+
+@{
+    ViewData["Title"] = "Add New Breakfast";
+}
+
+<form asp-controller="Home" asp-action="Add" method="post">
+    <label asp-for="Name"></label><input asp-for="Name"/><br/>
+    <label asp-for="Description"></label><input asp-for="Description"/><br/>
+    <label asp-for="EventDate"></label><input asp-for="EventDate"/><br/>
+    <label asp-for="FallbackDate"></label><input asp-for="FallbackDate"/><br/>
+    <label>Image</label><input id="Image" name="Image"/><br/>
+    <input type="submit"/>
+</form>
